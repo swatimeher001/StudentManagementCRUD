@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <!-- Include your navbar here -->
+    </div>
+    <div class="container">
+        <h1>Edit Attendance</h1>
+     <!--  <form action="/attendance/update/{id}" method="post" th:object="${attendance}">   -->
+        <form  th:action="@{/attendance/update{id}}" method="post" th:object="${attendance}"></form>
+            <div>
+                <label for="student">Student</label>
+                <input type="text" id="student" th:field="*{student.name}" placeholder="Enter student name" required>
+            </div>
+            <div>
+                <label for="present">Present</label>
+                <input type="checkbox" id="present" th:field="*{present}">
+            </div>
+            <div>
+                <button type="submit" class="button">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <!-- Include your navbar here -->
+    </div>
+    <div class="container">
+        <h1>Attendance</h1>
+        <a href="/attendance/add" class="button">Add Attendance</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Date</th>
+                    <th>Present</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="attendance : ${attendanceList}">
+                    <td th:text="${attendance.id}">1</td>
+                    <td th:text="${attendance.student.name}">John Doe</td>
+                    <td th:text="${attendance.date}">2024-01-01</td>
+                    <td th:text="${attendance.present}">Yes</td>
+                    <td>
+                        <a th:href="@{/attendance/edit/{id}(id=${attendance.id})}" class="button">Edit</a>
+                        <a th:href="@{/attendance/delete/{id}(id=${attendance.id})}" class="button">Delete</a>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
