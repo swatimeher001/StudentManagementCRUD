@@ -1,0 +1,9 @@
+FROM maven:3.8.1-openjdk-17 AS build
+COPY . .
+RUN mvn clean package DskipTests
+
+
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/demo-3.3.1.jar demo.jar
+EXPOSE 8088
+ENTRYPOINT ["java","-jar","demo.jar"]
