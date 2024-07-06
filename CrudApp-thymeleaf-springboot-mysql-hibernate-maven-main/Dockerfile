@@ -2,7 +2,7 @@
 FROM maven:3.8.4-openjdk-17 AS build
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /demo
 
 # Copy the pom.xml file and download dependencies
 COPY pom.xml .
@@ -19,10 +19,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from the build image
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/*.jar demo.jar
 
 # Expose the port the application runs on
 EXPOSE 8088
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "demo.jar"]
