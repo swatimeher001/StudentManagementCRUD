@@ -6,20 +6,20 @@ WORKDIR /demo
 
 # Copy the pom.xml file and download dependencies
 COPY pom.xml .
-RUN mvn dependency:go-offline
+RUN mvn dependency:go-offline     
 
 # Copy the source code and build the application
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests   
 
 # Use an OpenJDK image to run the application
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim                   
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /app           
 
 # Copy the jar file from the build image
-COPY --from=build /app/target/*.jar demo.jar
+COPY --from=build /app/target/*.jar demo.jar  
 
 # Expose the port the application runs on
 EXPOSE 8088
